@@ -11,12 +11,17 @@ const PORT = process.env.PORT || 5000;
 app.use(morgan('dev'));
 
 dotenv.config();
-const allowedOrigins = ['http://localhost:5173',`${process.env.FRONTEND_URL}`];
+const allowedOrigins = [
+    'http://localhost:5173',
+    `${process.env.FRONTEND_URL}`,
+    'https://kisanconnect-backend.onrender.com' // Add this line
+];
+
 // Middleware
 
 app.use(cors({
     origin: function(origin, callback){
-        console.log(origin)
+        console.log(origin);
         if(!origin) return callback(null, true);
         if(allowedOrigins.indexOf(origin) === -1){
             var msg = 'The CORS policy for this site does not ' +
