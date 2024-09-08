@@ -14,7 +14,7 @@ dotenv.config();
 const allowedOrigins = [
     'http://localhost:5173',
     `${process.env.FRONTEND_URL}`,
-    'https://kisanconnect-backend.onrender.com' // Add this line
+    'https://kisanconnect-pi.vercel.app' // Add this line
 ];
 
 // Middleware
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
     next();
 });
-
+app.set('trust proxy', 1);
 app.use(cors({
     origin: function(origin, callback){
         console.log(origin);
