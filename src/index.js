@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes.js'; // Add .js extension
 import mongooseConnection from './config/mongoDB.js'; // Add .js extension
+import helmet from 'helmet'; 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,19 +15,25 @@ dotenv.config();
 const allowedOrigins = [
     'http://localhost:5173',
     `${process.env.FRONTEND_URL}`,
-    'https://kisanconnect-pi.vercel.app' // Add this line
+    'https://kisanconnect-pi.vercel.app'    // Add this line
 ];
 
 // Middleware
-
-// Middleware to set headers
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.header('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-    next();
-});
 app.set('trust proxy', 1);
+app.use(helmet()); // Apply helmet middleware for security headers
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:", "validator.swagger.io"],
+        childSrc: ["'none'"],
+        formAction: ["'self'"],
+        frameAncestors: ["'none'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    }
+}));
 app.use(cors({
     origin: function(origin, callback){
         console.log(origin);
