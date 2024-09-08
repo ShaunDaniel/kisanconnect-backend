@@ -12,6 +12,7 @@ const userSchema = new Schema({
     password: { type: String },
     city: { type: String, required: true, default: '-' },
     state: { type: String, required: true, default: '-' },
+    rating: {type: Number},
     profilePicture: { type: String },
     businessName: { type: String },
     businessAddress: { type: String },

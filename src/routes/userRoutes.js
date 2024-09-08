@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.json(user);
+        res.json({"userType": user.userType, "firstName": user.firstName, "lastName": user.lastName, "email": user.email, "phone": user.phone, "city": user.city, "state": user.state, "rating": user.rating, "profilePicture": user.profilePicture, "businessName": user.businessName, "businessAddress": user.businessAddress, "landArea": user.landArea, "farmingType": user.farmingType, "hasTransportService": user.hasTransportService, "isCertified": user.isCertified, "istermsAccepted": user.istermsAccepted});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
