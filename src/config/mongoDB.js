@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const dbURL = process.env.MONGODB_URL;
 
@@ -18,4 +19,4 @@ mongoose.connect(dbURL)
         process.exit(1);
     });
 
-    module.exports = mongoose.connection;
+export default mongoose.connection
