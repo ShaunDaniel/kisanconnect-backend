@@ -13,6 +13,7 @@ app.use(morgan('dev'));
 dotenv.config();
 const allowedOrigins = ['http://localhost:5173',`${process.env.FRONTEND_URL}`];
 // Middleware
+
 app.use(cors({
     origin: function(origin, callback){
         console.log(origin)

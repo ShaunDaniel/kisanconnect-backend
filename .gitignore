@@ -1,5 +1,5 @@
 # Node.js
-./node_modules/
+node_modules/
 
 # Logs
 logs/
@@ -26,4 +26,5 @@ out/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+.env
 .env
